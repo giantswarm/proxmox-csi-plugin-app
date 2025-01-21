@@ -1,0 +1,15 @@
+apiVersion: vendir.k14s.io/v1alpha1
+directories:
+- contents:
+  - git:
+      commitTitle: 'chore: release v0.10.0...'
+      sha: 9f12eadcd0b0e6ffabee62152ddd024ac45f3059
+      tags:
+      - v0.10.0
+    path: proxmox-csi-plugin
+  path: vendor
+- contents:
+  - directory: {}
+    path: .
+  path: helm/proxmox-csi-plugin
+kind: LockConfig

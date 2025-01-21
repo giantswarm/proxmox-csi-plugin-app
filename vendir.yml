@@ -1,0 +1,19 @@
+apiVersion: vendir.k14s.io/v1alpha1
+kind: Config
+directories:
+  - path: vendor
+    contents:
+      - path: proxmox-csi-plugin
+        git:
+          depth: 1
+          url: https://github.com/sergelogvinov/proxmox-csi-plugin
+          ref: "v0.10.0"
+        includePaths:
+          - charts/proxmox-csi-plugin/**/*
+  - path: helm/proxmox-csi-plugin
+    contents:
+    - path: .
+      directory:
+        path: vendor/proxmox-csi-plugin/charts/proxmox-csi-plugin
+      ignorePaths:
+      - values.schema.json
