@@ -1,0 +1,12 @@
+diff --git a/helm/proxmox-csi-plugin/templates/_helpers.tpl b/helm/proxmox-csi-plugin/templates/_helpers.tpl
+index 2a7f802..0ec0f8f 100644
+--- a/helm/proxmox-csi-plugin/templates/_helpers.tpl
++++ b/helm/proxmox-csi-plugin/templates/_helpers.tpl
+@@ -41,6 +41,7 @@ app.kubernetes.io/instance: {{ .Release.Name }}
+ app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+ {{- end }}
+ app.kubernetes.io/managed-by: {{ .Release.Service }}
++application.giantswarm.io/team: {{ index .Chart.Annotations "application.giantswarm.io/team" | quote }}
+ {{- end }}
+ 
+ {{/*

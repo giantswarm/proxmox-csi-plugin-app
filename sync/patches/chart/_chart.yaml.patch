@@ -1,0 +1,11 @@
+diff --git a/helm/proxmox-csi-plugin/Chart.yaml b/helm/proxmox-csi-plugin/Chart.yaml
+index 1c54491..fef985c 100644
+--- a/helm/proxmox-csi-plugin/Chart.yaml
++++ b/helm/proxmox-csi-plugin/Chart.yaml
+@@ -24,3 +24,6 @@ version: 0.3.3
+ # follow Semantic Versioning. They should reflect the version the application is using.
+ # It is recommended to use it with quotes.
+ appVersion: v0.10.0
++
++annotations:
++  application.giantswarm.io/team: "rocket"
