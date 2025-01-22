@@ -9,6 +9,8 @@ Here, we define the proxmox-csi-plugin chart with its templates and default conf
 
 **What is this app?**
 
+https://github.com/sergelogvinov/proxmox-csi-plugin is a Kubernetes CSI plugin for Proxmox VE.
+
 **Why did we add it?**
 
 **Who can use it?**
