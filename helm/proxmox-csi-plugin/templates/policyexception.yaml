@@ -1,0 +1,51 @@
+apiVersion: policy.giantswarm.io/v1alpha1
+kind: PolicyException
+metadata:
+  annotations:
+    "helm.sh/hook": "pre-install,pre-upgrade"
+  name: {{ include "proxmox-csi-plugin.fullname" . }}-node
+  namespace: policy-exceptions
+  labels:
+    {{- include "proxmox-csi-plugin.labels" . | nindent 4 }}
+spec:
+  policies:
+    - disallow-capabilities
+    - disallow-capabilities-strict
+    - disallow-host-namespaces
+    - disallow-host-path
+    - disallow-privilege-escalation
+    - disallow-privileged-containers
+    - require-run-as-nonroot
+    - restrict-volume-types
+  targets:
+    - kind: DaemonSet
+      namespaces:
+      - {{ .Release.Namespace }}
+      names:
+      - {{ include "proxmox-csi-plugin.fullname" . }}*
+---
+apiVersion: policy.giantswarm.io/v1alpha1
+kind: PolicyException
+metadata:
+  annotations:
+    "helm.sh/hook": "pre-install,pre-upgrade"
+  name: {{ include "proxmox-csi-plugin.fullname" . }}-controller
+  namespace: policy-exceptions
+  labels:
+    {{- include "proxmox-csi-plugin.labels" . | nindent 4 }}
+spec:
+  policies:
+    - disallow-capabilities
+    - disallow-capabilities-strict
+    - disallow-host-namespaces
+    - disallow-host-path
+    - disallow-privilege-escalation
+    - disallow-privileged-containers
+    - require-run-as-nonroot
+    - restrict-volume-types
+  targets:
+    - kind: Deployment
+      namespaces:
+      - {{ .Release.Namespace }}
+      names:
+      - {{ include "proxmox-csi-plugin.fullname" . }}*

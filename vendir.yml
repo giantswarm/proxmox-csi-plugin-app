@@ -17,3 +17,4 @@ directories:
         path: vendor/proxmox-csi-plugin/charts/proxmox-csi-plugin
       ignorePaths:
       - values.schema.json
+      - templates/policyexception.yaml
