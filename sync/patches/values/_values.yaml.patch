@@ -1,0 +1,133 @@
+diff --git a/helm/proxmox-csi-plugin/values.yaml b/helm/proxmox-csi-plugin/values.yaml
+index 9b2b324..a94e60a 100644
+--- a/helm/proxmox-csi-plugin/values.yaml
++++ b/helm/proxmox-csi-plugin/values.yaml
+@@ -54,7 +54,7 @@ configFile: /etc/proxmox/config.yaml
+ config:
+   features:
+     # specify provider: proxmox if you are using capmox (cluster api provider for proxmox)
+-    provider: "default"
++    provider: proxmox
+   clusters: []
+   #   - url: https://cluster-api-1.exmple.com:8006/api2/json
+   #     insecure: false
+@@ -106,49 +106,61 @@ controller:
+   plugin:
+     # -- Controller CSI Driver.
+     image:
+-      repository: ghcr.io/sergelogvinov/proxmox-csi-controller
++      repository: gsoci.azurecr.io/giantswarm/proxmox-csi-controller
+       pullPolicy: IfNotPresent
+       # Overrides the image tag whose default is the chart appVersion.
+       tag: ""
+     # -- Controller resource requests and limits.
+     # ref: https://kubernetes.io/docs/user-guide/compute-resources/
+     resources:
++      limits:
++        cpu: 100m
++        memory: 64Mi
+       requests:
+         cpu: 10m
+         memory: 16Mi
+   attacher:
+     # -- CSI Attacher.
+     image:
+-      repository: registry.k8s.io/sig-storage/csi-attacher
++      repository: gsoci.azurecr.io/giantswarm/csi-attacher
+       pullPolicy: IfNotPresent
+       tag: v4.7.0
+     # -- Attacher resource requests and limits.
+     # ref: https://kubernetes.io/docs/user-guide/compute-resources/
+     resources:
++      limits:
++        cpu: 100m
++        memory: 64Mi
+       requests:
+         cpu: 10m
+         memory: 16Mi
+   provisioner:
+     # -- CSI Provisioner.
+     image:
+-      repository: registry.k8s.io/sig-storage/csi-provisioner
++      repository: gsoci.azurecr.io/giantswarm/csi-provisioner
+       pullPolicy: IfNotPresent
+       tag: v5.1.0
+     # -- Provisioner resource requests and limits.
+     # ref: https://kubernetes.io/docs/user-guide/compute-resources/
+     resources:
++      limits:
++        cpu: 100m
++        memory: 64Mi
+       requests:
+         cpu: 10m
+         memory: 16Mi
+   resizer:
+     # -- CSI Resizer.
+     image:
+-      repository: registry.k8s.io/sig-storage/csi-resizer
++      repository: gsoci.azurecr.io/giantswarm/csi-resizer
+       pullPolicy: IfNotPresent
+       tag: v1.12.0
+     # -- Resizer resource requests and limits.
+     # ref: https://kubernetes.io/docs/user-guide/compute-resources/
+     resources:
++      limits:
++        cpu: 100m
++        memory: 64Mi
+       requests:
+         cpu: 10m
+         memory: 16Mi
+@@ -157,22 +169,31 @@ node:
+   plugin:
+     # -- Node CSI Driver.
+     image:
+-      repository: ghcr.io/sergelogvinov/proxmox-csi-node
++      repository: gsoci.azurecr.io/giantswarm/proxmox-csi-node
+       pullPolicy: IfNotPresent
+       # Overrides the image tag whose default is the chart appVersion.
+       tag: ""
+     # -- Node CSI Driver resource requests and limits.
+     # ref: https://kubernetes.io/docs/user-guide/compute-resources/
+-    resources: {}
++    resources:
++      limits:
++        cpu: 100m
++        memory: 300Mi
++      requests:
++        cpu: 10m
++        memory: 20Mi
+   driverRegistrar:
+     # -- Node CSI driver registrar.
+     image:
+-      repository: registry.k8s.io/sig-storage/csi-node-driver-registrar
++      repository: gsoci.azurecr.io/giantswarm/csi-node-driver-registrar
+       pullPolicy: IfNotPresent
+       tag: v2.12.0
+     # -- Node registrar resource requests and limits.
+     # ref: https://kubernetes.io/docs/user-guide/compute-resources/
+     resources:
++      limits:
++        cpu: 100m
++        memory: 64Mi
+       requests:
+         cpu: 10m
+         memory: 16Mi
+@@ -198,7 +219,7 @@ node:
+ livenessprobe:
+   # -- Common livenessprobe sidecar.
+   image:
+-    repository: registry.k8s.io/sig-storage/livenessprobe
++    repository: gsoci.azurecr.io/giantswarm/livenessprobe
+     pullPolicy: IfNotPresent
+     tag: v2.14.0
+   # -- Failure threshold for livenessProbe
+@@ -212,6 +233,9 @@ livenessprobe:
+   # -- Liveness probe resource requests and limits.
+   # ref: https://kubernetes.io/docs/user-guide/compute-resources/
+   resources:
++    limits:
++      cpu: 100m
++      memory: 64Mi
+     requests:
+       cpu: 10m
+       memory: 16Mi
