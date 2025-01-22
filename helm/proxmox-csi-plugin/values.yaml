@@ -54,7 +54,7 @@ configFile: /etc/proxmox/config.yaml
 config:
   features:
     # specify provider: proxmox if you are using capmox (cluster api provider for proxmox)
-    provider: proxmox
+    provider: "default"
   clusters: []
   #   - url: https://cluster-api-1.exmple.com:8006/api2/json
   #     insecure: false
@@ -106,61 +106,49 @@ controller:
   plugin:
     # -- Controller CSI Driver.
     image:
-      repository: gsoci.azurecr.io/giantswarm/proxmox-csi-controller
+      repository: ghcr.io/sergelogvinov/proxmox-csi-controller
       pullPolicy: IfNotPresent
       # Overrides the image tag whose default is the chart appVersion.
       tag: ""
     # -- Controller resource requests and limits.
     # ref: https://kubernetes.io/docs/user-guide/compute-resources/
     resources:
-      limits:
-        cpu: 100m
-        memory: 64Mi
       requests:
         cpu: 10m
         memory: 16Mi
   attacher:
     # -- CSI Attacher.
     image:
-      repository: gsoci.azurecr.io/giantswarm/csi-attacher
+      repository: registry.k8s.io/sig-storage/csi-attacher
       pullPolicy: IfNotPresent
       tag: v4.7.0
     # -- Attacher resource requests and limits.
     # ref: https://kubernetes.io/docs/user-guide/compute-resources/
     resources:
-      limits:
-        cpu: 100m
-        memory: 64Mi
       requests:
         cpu: 10m
         memory: 16Mi
   provisioner:
     # -- CSI Provisioner.
     image:
-      repository: gsoci.azurecr.io/giantswarm/csi-provisioner
+      repository: registry.k8s.io/sig-storage/csi-provisioner
       pullPolicy: IfNotPresent
       tag: v5.1.0
     # -- Provisioner resource requests and limits.
     # ref: https://kubernetes.io/docs/user-guide/compute-resources/
     resources:
-      limits:
-        cpu: 100m
-        memory: 64Mi
       requests:
         cpu: 10m
         memory: 16Mi
   resizer:
     # -- CSI Resizer.
     image:
-      repository: gsoci.azurecr.io/giantswarm/csi-resizer
+      repository: registry.k8s.io/sig-storage/csi-resizer
       pullPolicy: IfNotPresent
       tag: v1.12.0
     # -- Resizer resource requests and limits.
     # ref: https://kubernetes.io/docs/user-guide/compute-resources/
     resources:
-      limits:
-        cpu: 100m
-        memory: 64Mi
       requests:
         cpu: 10m
         memory: 16Mi
@@ -169,7 +157,7 @@ node:
   plugin:
     # -- Node CSI Driver.
     image:
-      repository: gsoci.azurecr.io/giantswarm/proxmox-csi-node
+      repository: ghcr.io/sergelogvinov/proxmox-csi-node
       pullPolicy: IfNotPresent
       # Overrides the image tag whose default is the chart appVersion.
       tag: ""
@@ -179,15 +167,12 @@ node:
   driverRegistrar:
     # -- Node CSI driver registrar.
     image:
-      repository: gsoci.azurecr.io/giantswarm/csi-node-driver-registrar
+      repository: registry.k8s.io/sig-storage/csi-node-driver-registrar
       pullPolicy: IfNotPresent
       tag: v2.12.0
     # -- Node registrar resource requests and limits.
     # ref: https://kubernetes.io/docs/user-guide/compute-resources/
     resources:
-      limits:
-        cpu: 100m
-        memory: 64Mi
       requests:
         cpu: 10m
         memory: 16Mi
@@ -213,7 +198,7 @@ node:
 livenessprobe:
   # -- Common livenessprobe sidecar.
   image:
-    repository: gsoci.azurecr.io/giantswarm/livenessprobe
+    repository: registry.k8s.io/sig-storage/livenessprobe
     pullPolicy: IfNotPresent
     tag: v2.14.0
   # -- Failure threshold for livenessProbe
@@ -227,9 +212,6 @@ livenessprobe:
   # -- Liveness probe resource requests and limits.
   # ref: https://kubernetes.io/docs/user-guide/compute-resources/
   resources:
-    limits:
-      cpu: 100m
-      memory: 64Mi
     requests:
       cpu: 10m
       memory: 16Mi
