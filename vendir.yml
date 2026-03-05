@@ -7,7 +7,7 @@ directories:
         git:
           depth: 1
           url: https://github.com/sergelogvinov/proxmox-csi-plugin
-          ref: "v0.10.0"
+          ref: "v0.18.0"
         includePaths:
           - charts/proxmox-csi-plugin/**/*
   - path: helm/proxmox-csi-plugin

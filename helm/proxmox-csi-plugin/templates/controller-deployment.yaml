@@ -27,6 +27,9 @@ spec:
       {{- end }}
       labels:
         {{- include "proxmox-csi-plugin.selectorLabels" . | nindent 8 }}
+        {{- with default .Values.podLabels .Values.controller.podLabels -}}
+          {{- toYaml . | nindent 8 }}
+        {{- end }}
     spec:
       {{- if .Values.priorityClassName }}
       priorityClassName: {{ .Values.priorityClassName }}
@@ -80,11 +83,13 @@ spec:
             - "--csi-address=unix:///csi/csi.sock"
             - "--timeout={{ .Values.timeout }}"
             - "--leader-election"
-            - "--default-fstype=ext4"
+            {{- range .Values.controller.attacher.args }}
+            - {{ . | quote }}
+            {{- end }}
           volumeMounts:
             - name: socket-dir
               mountPath: /csi
-          resources: {{ toYaml .Values.controller.attacher.resources | nindent 12 }}
+          resources: {{- toYaml .Values.controller.attacher.resources | nindent 12 }}
         - name: csi-provisioner
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
@@ -95,10 +100,13 @@ spec:
             - "--csi-address=unix:///csi/csi.sock"
             - "--timeout={{ .Values.timeout }}"
             - "--leader-election"
-            - "--default-fstype=ext4"
-            - "--feature-gates=Topology=True"
+            {{- if .Values.options.enableCapacity }}
             - "--enable-capacity"
             - "--capacity-ownerref-level=2"
+            {{- end }}
+            {{- range .Values.controller.provisioner.args }}
+            - {{ . | quote }}
+            {{- end }}
           env:
             - name: NAMESPACE
               valueFrom:
@@ -111,7 +119,7 @@ spec:
           volumeMounts:
             - name: socket-dir
               mountPath: /csi
-          resources: {{ toYaml .Values.controller.provisioner.resources | nindent 12 }}
+          resources: {{- toYaml .Values.controller.provisioner.resources | nindent 12 }}
         - name: csi-resizer
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
@@ -123,10 +131,32 @@ spec:
             - "--timeout={{ .Values.timeout }}"
             - "--handle-volume-inuse-error=false"
             - "--leader-election"
+            {{- range .Values.controller.resizer.args }}
+            - {{ . | quote }}
+            {{- end }}
           volumeMounts:
             - name: socket-dir
               mountPath: /csi
-          resources: {{ toYaml .Values.controller.resizer.resources | nindent 12 }}
+          resources: {{- toYaml .Values.controller.resizer.resources | nindent 12 }}
+        {{- if .Values.controller.snapshotter.enabled }}
+        - name: csi-snapshotter
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.controller.snapshotter.image.repository }}:{{ .Values.controller.snapshotter.image.tag }}"
+          imagePullPolicy: {{ .Values.controller.snapshotter.image.pullPolicy }}
+          args:
+            - "-v={{ .Values.logVerbosityLevel }}"
+            - "--csi-address=unix:///csi/csi.sock"
+            - "--timeout={{ .Values.timeout }}"
+            - "--leader-election"
+            {{- range .Values.controller.snapshotter.args }}
+            - {{ . | quote }}
+            {{- end }}
+          volumeMounts:
+            - name: socket-dir
+              mountPath: /csi
+          resources: {{- toYaml .Values.controller.snapshotter.resources | nindent 12 }}
+        {{- end }}
         - name: liveness-probe
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
@@ -138,7 +168,7 @@ spec:
           volumeMounts:
             - name: socket-dir
               mountPath: /csi
-          resources: {{ toYaml .Values.livenessprobe.resources | nindent 12 }}
+          resources: {{- toYaml .Values.livenessprobe.resources | nindent 12 }}
       volumes:
         - name: socket-dir
           emptyDir: {}
