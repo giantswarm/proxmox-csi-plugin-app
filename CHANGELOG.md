@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Update chart to upstream `v0.18.0`.
 - changed: `app.giantswarm.io` label group was changed to `application.giantswarm.io`
 
 [Unreleased]: https://github.com/giantswarm/proxmox-csi-plugin-app/tree/main
