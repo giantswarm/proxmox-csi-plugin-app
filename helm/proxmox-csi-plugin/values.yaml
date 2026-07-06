@@ -132,7 +132,7 @@ controller:
     image:
       repository: gsoci.azurecr.io/giantswarm/csi-attacher
       pullPolicy: IfNotPresent
-      tag: v4.10.0
+      tag: v4.12.0
     # -- Attacher arguments.
     # example: --default-fstype=ext4
     args:
