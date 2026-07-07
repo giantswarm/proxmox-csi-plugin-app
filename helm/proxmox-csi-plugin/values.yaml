@@ -132,7 +132,7 @@ controller:
     image:
       repository: gsoci.azurecr.io/giantswarm/csi-attacher
       pullPolicy: IfNotPresent
-      tag: v4.10.0
+      tag: v4.12.0
     # -- Attacher arguments.
     # example: --default-fstype=ext4
     args:
@@ -152,7 +152,7 @@ controller:
     image:
       repository: gsoci.azurecr.io/giantswarm/csi-provisioner
       pullPolicy: IfNotPresent
-      tag: v5.3.0
+      tag: v6.3.0
     # -- Provisioner arguments.
     # example: --feature-gates=VolumeAttributesClass=true
     args:
@@ -192,7 +192,7 @@ controller:
     image:
       repository: gsoci.azurecr.io/giantswarm/csi-snapshotter
       pullPolicy: IfNotPresent
-      tag: v8.3.0
+      tag: v8.6.0
     # -- Snapshotter arguments.
     # example: --feature-gates=CSIVolumeGroupSnapshot=true
     args: []
@@ -229,7 +229,7 @@ node:
     image:
       repository: gsoci.azurecr.io/giantswarm/csi-node-driver-registrar
       pullPolicy: IfNotPresent
-      tag: v2.15.0
+      tag: v2.17.0
     # -- Driver registrar arguments.
     # example: --timeout=60s
     args: []
@@ -273,7 +273,7 @@ livenessprobe:
   image:
     repository: gsoci.azurecr.io/giantswarm/livenessprobe
     pullPolicy: IfNotPresent
-    tag: v2.16.0
+    tag: v2.19.0
   # -- Failure threshold for livenessProbe
   failureThreshold: 5
   # -- Initial delay seconds for livenessProbe
