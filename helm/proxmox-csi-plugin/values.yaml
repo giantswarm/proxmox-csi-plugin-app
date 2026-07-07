@@ -273,7 +273,7 @@ livenessprobe:
   image:
     repository: gsoci.azurecr.io/giantswarm/livenessprobe
     pullPolicy: IfNotPresent
-    tag: v2.16.0
+    tag: v2.19.0
   # -- Failure threshold for livenessProbe
   failureThreshold: 5
   # -- Initial delay seconds for livenessProbe
