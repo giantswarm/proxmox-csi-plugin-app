@@ -229,7 +229,7 @@ node:
     image:
       repository: gsoci.azurecr.io/giantswarm/csi-node-driver-registrar
       pullPolicy: IfNotPresent
-      tag: v2.15.0
+      tag: v2.17.0
     # -- Driver registrar arguments.
     # example: --timeout=60s
     args: []
