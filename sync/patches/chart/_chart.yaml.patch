@@ -11,10 +11,10 @@ index 55b84ed..73703b4 100644
  sources:
    - https://github.com/sergelogvinov/proxmox-csi-plugin
  keywords:
-@@ -24,3 +24,6 @@ version: 0.5.5
+@@ -24,3 +24,6 @@ maintainers:
  # follow Semantic Versioning. They should reflect the version the application is using.
  # It is recommended to use it with quotes.
- appVersion: v0.18.0
+ appVersion: v0.19.1
 +
 +annotations:
 +  application.giantswarm.io/team: "rocket"
