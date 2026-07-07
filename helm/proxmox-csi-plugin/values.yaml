@@ -152,7 +152,7 @@ controller:
     image:
       repository: gsoci.azurecr.io/giantswarm/csi-provisioner
       pullPolicy: IfNotPresent
-      tag: v5.3.0
+      tag: v6.3.0
     # -- Provisioner arguments.
     # example: --feature-gates=VolumeAttributesClass=true
     args:
