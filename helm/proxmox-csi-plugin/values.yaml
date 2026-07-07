@@ -172,7 +172,7 @@ controller:
     image:
       repository: gsoci.azurecr.io/giantswarm/csi-resizer
       pullPolicy: IfNotPresent
-      tag: v1.14.0
+      tag: v2.2.1
     # -- Resizer arguments.
     # example: --feature-gates=VolumeAttributesClass=true
     args: []
