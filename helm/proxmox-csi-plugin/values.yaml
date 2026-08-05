@@ -59,7 +59,7 @@ configFile: /etc/proxmox/config.yaml
 config:
   features:
     # specify provider: proxmox if you are using capmox (cluster api provider for proxmox)
-    provider: proxmox
+    provider: "default"
   clusters: []
   #   - url: https://cluster-api-1.exmple.com:8006/api2/json
   #     insecure: false
@@ -115,16 +115,13 @@ controller:
   plugin:
     # -- Controller CSI Driver.
     image:
-      repository: gsoci.azurecr.io/giantswarm/proxmox-csi-controller
+      repository: ghcr.io/sergelogvinov/proxmox-csi-controller
       pullPolicy: IfNotPresent
       # Overrides the image tag whose default is the chart appVersion.
       tag: ""
     # -- Controller resource requests and limits.
     # ref: https://kubernetes.io/docs/user-guide/compute-resources/
     resources:
-      limits:
-        cpu: 100m
-        memory: 64Mi
       requests:
         cpu: 10m
         memory: 16Mi
@@ -132,9 +129,9 @@ controller:
     # -- CSI Attacher.
     # ref: https://github.com/kubernetes-csi/external-attacher
     image:
-      repository: gsoci.azurecr.io/giantswarm/csi-attacher
+      repository: registry.k8s.io/sig-storage/csi-attacher
       pullPolicy: IfNotPresent
-      tag: v4.12.0
+      tag: v4.10.0
     # -- Attacher arguments.
     # example: --default-fstype=ext4
     args:
@@ -142,9 +139,6 @@ controller:
     # -- Attacher resource requests and limits.
     # ref: https://kubernetes.io/docs/user-guide/compute-resources/
     resources:
-      limits:
-        cpu: 100m
-        memory: 64Mi
       requests:
         cpu: 10m
         memory: 16Mi
@@ -152,9 +146,9 @@ controller:
     # -- CSI Provisioner.
     # ref: https://github.com/kubernetes-csi/external-provisioner
     image:
-      repository: gsoci.azurecr.io/giantswarm/csi-provisioner
+      repository: registry.k8s.io/sig-storage/csi-provisioner
       pullPolicy: IfNotPresent
-      tag: v6.3.0
+      tag: v5.3.0
     # -- Provisioner arguments.
     # example: --feature-gates=VolumeAttributesClass=true
     args:
@@ -162,9 +156,6 @@ controller:
     # -- Provisioner resource requests and limits.
     # ref: https://kubernetes.io/docs/user-guide/compute-resources/
     resources:
-      limits:
-        cpu: 100m
-        memory: 64Mi
       requests:
         cpu: 10m
         memory: 16Mi
@@ -172,18 +163,15 @@ controller:
     # -- CSI Resizer.
     # refs: https://github.com/kubernetes-csi/external-resizer
     image:
-      repository: gsoci.azurecr.io/giantswarm/csi-resizer
+      repository: registry.k8s.io/sig-storage/csi-resizer
       pullPolicy: IfNotPresent
-      tag: v2.2.1
+      tag: v1.14.0
     # -- Resizer arguments.
     # example: --feature-gates=VolumeAttributesClass=true
     args: []
     # -- Resizer resource requests and limits.
     # ref: https://kubernetes.io/docs/user-guide/compute-resources/
     resources:
-      limits:
-        cpu: 100m
-        memory: 64Mi
       requests:
         cpu: 10m
         memory: 16Mi
@@ -192,18 +180,15 @@ controller:
     # -- CSI Snapshotter.
     # refs: https://github.com/kubernetes-csi/external-snapshotter
     image:
-      repository: gsoci.azurecr.io/giantswarm/csi-snapshotter
+      repository: registry.k8s.io/sig-storage/csi-snapshotter
       pullPolicy: IfNotPresent
-      tag: v8.6.0
+      tag: v8.3.0
     # -- Snapshotter arguments.
     # example: --feature-gates=CSIVolumeGroupSnapshot=true
     args: []
     # -- Snapshotter resource requests and limits.
     # ref: https://kubernetes.io/docs/user-guide/compute-resources/
     resources:
-      limits:
-        cpu: 100m
-        memory: 64Mi
       requests:
         cpu: 10m
         memory: 16Mi
@@ -212,35 +197,26 @@ node:
   plugin:
     # -- Node CSI Driver.
     image:
-      repository: gsoci.azurecr.io/giantswarm/proxmox-csi-node
+      repository: ghcr.io/sergelogvinov/proxmox-csi-node
       pullPolicy: IfNotPresent
       # Overrides the image tag whose default is the chart appVersion.
       tag: ""
     # -- Node CSI Driver resource requests and limits.
     # ref: https://kubernetes.io/docs/user-guide/compute-resources/
-    resources:
-      limits:
-        cpu: 100m
-        memory: 300Mi
-      requests:
-        cpu: 10m
-        memory: 20Mi
+    resources: {}
   driverRegistrar:
     # -- Node CSI driver registrar.
     # ref: https://github.com/kubernetes-csi/node-driver-registrar
     image:
-      repository: gsoci.azurecr.io/giantswarm/csi-node-driver-registrar
+      repository: registry.k8s.io/sig-storage/csi-node-driver-registrar
       pullPolicy: IfNotPresent
-      tag: v2.17.0
+      tag: v2.15.0
     # -- Driver registrar arguments.
     # example: --timeout=60s
     args: []
     # -- Node registrar resource requests and limits.
     # ref: https://kubernetes.io/docs/user-guide/compute-resources/
     resources:
-      limits:
-        cpu: 100m
-        memory: 64Mi
       requests:
         cpu: 10m
         memory: 16Mi
@@ -273,9 +249,9 @@ node:
 livenessprobe:
   # -- Common livenessprobe sidecar.
   image:
-    repository: gsoci.azurecr.io/giantswarm/livenessprobe
+    repository: registry.k8s.io/sig-storage/livenessprobe
     pullPolicy: IfNotPresent
-    tag: v2.19.0
+    tag: v2.16.0
   # -- Failure threshold for livenessProbe
   failureThreshold: 5
   # -- Initial delay seconds for livenessProbe
@@ -287,9 +263,6 @@ livenessprobe:
   # -- Liveness probe resource requests and limits.
   # ref: https://kubernetes.io/docs/user-guide/compute-resources/
   resources:
-    limits:
-      cpu: 100m
-      memory: 64Mi
     requests:
       cpu: 10m
       memory: 16Mi
