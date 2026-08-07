@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
 - Update chart to upstream `v0.19.1`.
 - Update chart to upstream `v0.18.0`.
 - changed: `app.giantswarm.io` label group was changed to `application.giantswarm.io`
