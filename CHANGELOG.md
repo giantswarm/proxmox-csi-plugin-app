@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- chore(deps): update vendir https://github.com/sergelogvinov/proxmox-csi-plugin to v0.20.0
+- Generally improve chart sync hygiene.
+
 ## [0.1.0] - 2026-08-07
 
 ### Changed
