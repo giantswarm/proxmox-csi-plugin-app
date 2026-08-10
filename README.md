@@ -1,69 +1,29 @@
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/giantswarm/proxmox-csi-plugin-app/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/giantswarm/proxmox-csi-plugin-app/tree/main)
 
-[Read me after cloning this template (GS staff only)](https://handbook.giantswarm.io/docs/dev-and-releng/app-developer-processes/adding_app_to_appcatalog/)
+# proxmox-csi-plugin-app
 
-# proxmox-csi-plugin chart
+This repository holds the Giant Swarm App for the Proxmox CSI plugin.
+The plugin is a Kubernetes CSI driver. It gives Proxmox VE block storage to workload clusters.
 
-Giant Swarm offers a proxmox-csi-plugin App which can be installed in workload clusters.
-Here, we define the proxmox-csi-plugin chart with its templates and default configuration.
+## Source
 
-**What is this app?**
+The chart in `helm/proxmox-csi-plugin` comes from upstream:
 
-https://github.com/sergelogvinov/proxmox-csi-plugin is a Kubernetes CSI plugin for Proxmox VE.
+- Upstream project: <https://github.com/sergelogvinov/proxmox-csi-plugin>
+- Upstream chart: `charts/proxmox-csi-plugin`
 
-**Why did we add it?**
+`vendir.yml` pins the upstream version. `vendir sync` copies the chart into `vendor/`, then into `helm/`.
+The scripts in `sync/patches` apply the Giant Swarm changes on top.
+Run `./sync/sync.sh` to do all these steps. See [sync/README.md](sync/README.md) for more information.
 
-**Who can use it?**
+Do not edit the chart by hand. Change or add a patch in `sync/patches`, then run the sync script.
 
-## Installing
+## Installation
 
-There are several ways to install this app onto a workload cluster.
+Install this app on a workload cluster with the Giant Swarm App Platform:
 
-- [Using GitOps to instantiate the App](https://docs.giantswarm.io/tutorials/continuous-deployment/apps/add-appcr/)
-- By creating an [App resource](https://docs.giantswarm.io/reference/platform-api/crd/apps.application.giantswarm.io) using the platform API as explained in [Getting started with App Platform](https://docs.giantswarm.io/tutorials/fleet-management/app-platform/).
+- [Use GitOps to install the chart](https://docs.giantswarm.io/tutorials/continuous-deployment/helm-releases/add-helmrelease/)
 
-## Configuring
+## Configuration
 
-### values.yaml
-
-**This is an example of a values file you could upload using our web interface.**
-
-```yaml
-# values.yaml
-
-```
-
-### Sample App CR and ConfigMap for the management cluster
-
-If you have access to the Kubernetes API on the management cluster, you could create the App CR and ConfigMap directly.
-
-Here is an example that would install the app to workload cluster `abc12`:
-
-```yaml
-# appCR.yaml
-
-```
-
-```yaml
-# user-values-configmap.yaml
-
-```
-
-See our [full reference on how to configure apps](https://docs.giantswarm.io/tutorials/fleet-management/app-platform/app-configuration/) for more details.
-
-## Compatibility
-
-This app has been tested to work with the following workload cluster release versions:
-
-- _add release version_
-
-## Limitations
-
-Some apps have restrictions on how they can be deployed.
-Not following these limitations will most likely result in a broken deployment.
-
-- _add limitation_
-
-## Credit
-
-- {APP HELM REPOSITORY}
+See [helm/proxmox-csi-plugin/README.md](helm/proxmox-csi-plugin/README.md) for all the values.

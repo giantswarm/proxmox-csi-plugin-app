@@ -2,119 +2,67 @@ diff --git a/helm/proxmox-csi-plugin/values.yaml b/helm/proxmox-csi-plugin/value
 index 19aac60..4f34e4f 100644
 --- a/helm/proxmox-csi-plugin/values.yaml
 +++ b/helm/proxmox-csi-plugin/values.yaml
-@@ -59,7 +59,7 @@ configFile: /etc/proxmox/config.yaml
- config:
-   features:
+@@ -61,3 +61,3 @@ config:
      # specify provider: proxmox if you are using capmox (cluster api provider for proxmox)
 -    provider: "default"
-+    provider: proxmox
++    provider: "proxmox"
    clusters: []
-   #   - url: https://cluster-api-1.exmple.com:8006/api2/json
-   #     insecure: false
-@@ -113,13 +113,16 @@ controller:
-   plugin:
-     # -- Controller CSI Driver.
+@@ -117,3 +117,3 @@ controller:
      image:
 -      repository: ghcr.io/sergelogvinov/proxmox-csi-controller
 +      repository: gsoci.azurecr.io/giantswarm/proxmox-csi-controller
        pullPolicy: IfNotPresent
-       # Overrides the image tag whose default is the chart appVersion.
-       tag: ""
-     # -- Controller resource requests and limits.
-     # ref: https://kubernetes.io/docs/user-guide/compute-resources/
+@@ -124,2 +124,5 @@ controller:
      resources:
 +      limits:
 +        cpu: 100m
 +        memory: 64Mi
        requests:
-         cpu: 10m
-         memory: 16Mi
-@@ -127,7 +130,7 @@ controller:
-     # -- CSI Attacher.
-     # ref: https://github.com/kubernetes-csi/external-attacher
+@@ -131,3 +134,3 @@ controller:
      image:
 -      repository: registry.k8s.io/sig-storage/csi-attacher
 +      repository: gsoci.azurecr.io/giantswarm/csi-attacher
        pullPolicy: IfNotPresent
-       tag: v4.10.0
-     # -- Attacher arguments.
-@@ -137,6 +140,9 @@ controller:
-     # -- Attacher resource requests and limits.
-     # ref: https://kubernetes.io/docs/user-guide/compute-resources/
+@@ -141,2 +144,5 @@ controller:
      resources:
 +      limits:
 +        cpu: 100m
 +        memory: 64Mi
        requests:
-         cpu: 10m
-         memory: 16Mi
-@@ -144,7 +150,7 @@ controller:
-     # -- CSI Provisioner.
-     # ref: https://github.com/kubernetes-csi/external-provisioner
+@@ -148,3 +154,3 @@ controller:
      image:
 -      repository: registry.k8s.io/sig-storage/csi-provisioner
 +      repository: gsoci.azurecr.io/giantswarm/csi-provisioner
        pullPolicy: IfNotPresent
-       tag: v5.3.0
-     # -- Provisioner arguments.
-@@ -154,6 +160,9 @@ controller:
-     # -- Provisioner resource requests and limits.
-     # ref: https://kubernetes.io/docs/user-guide/compute-resources/
+@@ -158,2 +164,5 @@ controller:
      resources:
 +      limits:
 +        cpu: 100m
 +        memory: 64Mi
        requests:
-         cpu: 10m
-         memory: 16Mi
-@@ -161,7 +170,7 @@ controller:
-     # -- CSI Resizer.
-     # refs: https://github.com/kubernetes-csi/external-resizer
-     image:
--      repository: registry.k8s.io/sig-storage/csi-resizer
-+      repository: gsoci.azurecr.io/giantswarm/csi-resizer
-       pullPolicy: IfNotPresent
-       tag: v1.14.0
-     # -- Resizer arguments.
-@@ -170,6 +179,9 @@ controller:
-     # -- Resizer resource requests and limits.
-     # ref: https://kubernetes.io/docs/user-guide/compute-resources/
+@@ -174,2 +183,5 @@ controller:
      resources:
 +      limits:
 +        cpu: 100m
 +        memory: 64Mi
        requests:
-         cpu: 10m
-         memory: 16Mi
-@@ -178,7 +190,7 @@ controller:
-     # -- CSI Snapshotter.
-     # refs: https://github.com/kubernetes-csi/external-snapshotter
+@@ -182,3 +194,3 @@ controller:
      image:
 -      repository: registry.k8s.io/sig-storage/csi-snapshotter
 +      repository: gsoci.azurecr.io/giantswarm/csi-snapshotter
        pullPolicy: IfNotPresent
-       tag: v8.3.0
-     # -- Snapshotter arguments.
-@@ -187,6 +199,9 @@ controller:
-     # -- Snapshotter resource requests and limits.
-     # ref: https://kubernetes.io/docs/user-guide/compute-resources/
+@@ -191,2 +203,5 @@ controller:
      resources:
 +      limits:
 +        cpu: 100m
 +        memory: 64Mi
        requests:
-         cpu: 10m
-         memory: 16Mi
-@@ -195,18 +210,24 @@ node:
-   plugin:
-     # -- Node CSI Driver.
+@@ -199,3 +214,3 @@ node:
      image:
 -      repository: ghcr.io/sergelogvinov/proxmox-csi-node
 +      repository: gsoci.azurecr.io/giantswarm/proxmox-csi-node
        pullPolicy: IfNotPresent
-       # Overrides the image tag whose default is the chart appVersion.
-       tag: ""
-     # -- Node CSI Driver resource requests and limits.
+@@ -205,3 +220,9 @@ node:
      # ref: https://kubernetes.io/docs/user-guide/compute-resources/
 -    resources: {}
 +    resources:
@@ -125,40 +73,25 @@ index 19aac60..4f34e4f 100644
 +        cpu: 10m
 +        memory: 20Mi
    driverRegistrar:
-     # -- Node CSI driver registrar.
-     # ref: https://github.com/kubernetes-csi/node-driver-registrar
+@@ -210,3 +231,3 @@ node:
      image:
 -      repository: registry.k8s.io/sig-storage/csi-node-driver-registrar
 +      repository: gsoci.azurecr.io/giantswarm/csi-node-driver-registrar
        pullPolicy: IfNotPresent
-       tag: v2.15.0
-     # -- Driver registrar arguments.
-@@ -215,6 +236,9 @@ node:
-     # -- Node registrar resource requests and limits.
-     # ref: https://kubernetes.io/docs/user-guide/compute-resources/
+@@ -219,2 +240,5 @@ node:
      resources:
 +      limits:
 +        cpu: 100m
 +        memory: 64Mi
        requests:
-         cpu: 10m
-         memory: 16Mi
-@@ -247,7 +271,7 @@ node:
- livenessprobe:
-   # -- Common livenessprobe sidecar.
+@@ -251,3 +275,3 @@ livenessprobe:
    image:
 -    repository: registry.k8s.io/sig-storage/livenessprobe
 +    repository: gsoci.azurecr.io/giantswarm/livenessprobe
      pullPolicy: IfNotPresent
-     tag: v2.16.0
-   # -- Failure threshold for livenessProbe
-@@ -261,6 +285,9 @@ livenessprobe:
-   # -- Liveness probe resource requests and limits.
-   # ref: https://kubernetes.io/docs/user-guide/compute-resources/
+@@ -265,2 +289,5 @@ livenessprobe:
    resources:
 +    limits:
 +      cpu: 100m
 +      memory: 64Mi
      requests:
-       cpu: 10m
-       memory: 16Mi
