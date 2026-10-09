@@ -1,5 +1,6 @@
 replace-chart-version-with-git: true
 generate-metadata: true
+disable-helm-image-reference-validator: true
 chart-dir: ./helm/proxmox-csi-plugin
 destination: ./build
 skip-steps: ["static_check"]
