@@ -12,7 +12,8 @@ workflows:
         app_catalog: giantswarm-playground-catalog
         app_catalog_test: giantswarm-playground-test-catalog
         chart: 'proxmox-csi-plugin'
-          # Trigger job on git tag.
+        override_app_version: false
+        # Trigger job on git tag.
         filters:
           tags:
             only: /^v.*/
