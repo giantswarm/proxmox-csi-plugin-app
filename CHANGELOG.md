@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Use the `giantswarm-release` GitHub App instead of the taylorbot personal access token to push sync commits.
 - Disable Helm image reference verification in CI config.
 - Add Github action to create an issue in `giantswarm/giantswarm` for Team Rocket on vendir updates.
 - Revert 'Disable Helm image reference verification in CI config'.
