@@ -7,10 +7,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Fixed
-
-- The `helm.sh/chart` label is valid for long chart versions: the 63-character cut trims the whole trailing run of `-`, `.` and `_`.
-
 ### Added
 
 - Run the sync script automatically on Renovate vendir branches and push the result for review.
@@ -22,6 +18,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add Github action to create an issue in `giantswarm/giantswarm` for Team Rocket on vendir updates.
 - Revert 'Disable Helm image reference verification in CI config'.
 - Stop overriding appVersion in chart metadata.
+- Ensure node/controller images use the upstream release version as their tag.
+- Use Linux tools to manipulate chart label instead of an inscrutable Perl command.
+- Remove unnecessary files from the chart dir.
+
+### Fixed
+
+- The `helm.sh/chart` label is valid for long chart versions: the 63-character cut trims the whole trailing run of `-`, `.` and `_`.
+- Clean up the mess in `sync/sync.sh` caused by the chart label change.
 
 ## [0.2.0] - 2026-08-10
 
