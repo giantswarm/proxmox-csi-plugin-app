@@ -118,7 +118,7 @@ controller:
       repository: gsoci.azurecr.io/giantswarm/proxmox-csi-controller
       pullPolicy: IfNotPresent
       # Overrides the image tag whose default is the chart appVersion.
-      tag: ""
+      tag: "v0.20.0"
     # -- Controller resource requests and limits.
     # ref: https://kubernetes.io/docs/user-guide/compute-resources/
     resources:
@@ -172,7 +172,7 @@ controller:
     # -- CSI Resizer.
     # refs: https://github.com/kubernetes-csi/external-resizer
     image:
-      repository: registry.k8s.io/sig-storage/csi-resizer
+      repository: gsoci.azurecr.io/giantswarm/csi-resizer
       pullPolicy: IfNotPresent
       tag: v1.14.0
     # -- Resizer arguments.
@@ -215,7 +215,7 @@ node:
       repository: gsoci.azurecr.io/giantswarm/proxmox-csi-node
       pullPolicy: IfNotPresent
       # Overrides the image tag whose default is the chart appVersion.
-      tag: ""
+      tag: "v0.20.0"
     # -- Node CSI Driver resource requests and limits.
     # ref: https://kubernetes.io/docs/user-guide/compute-resources/
     resources:

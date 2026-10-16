@@ -10,6 +10,12 @@ directories:
           ref: "v0.20.0"
         includePaths:
           - charts/proxmox-csi-plugin/**/*
+        excludePaths:
+          - charts/proxmox-csi-plugin/values.edge.yaml
+          - charts/proxmox-csi-plugin/values.talos.yaml
+          - charts/proxmox-csi-plugin/README.md.gotmpl
+          - charts/proxmox-csi-plugin/icon.png
+          - charts/proxmox-csi-plugin/ci/**/*
   - path: helm/proxmox-csi-plugin
     contents:
     - path: .
