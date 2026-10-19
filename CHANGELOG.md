@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Ensure node/controller images use the upstream release version as their tag.
 - Use Linux tools to manipulate chart label instead of an inscrutable Perl command.
 - Remove unnecessary files from the chart dir.
+- Update architect to v10.14.8 (giantswarm/proxmox-csi-plugin-app#58)
 
 ### Fixed
 
