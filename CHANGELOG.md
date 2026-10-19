@@ -27,6 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Use Linux tools to manipulate chart label instead of an inscrutable Perl command.
 - Remove unnecessary files from the chart dir.
 - Update architect to v10.14.8 (giantswarm/proxmox-csi-plugin-app#58)
+- Update carvel-dev/vendir to v0.46.3 (giantswarm/proxmox-csi-plugin-app#68)
 
 ### Fixed
 
