@@ -1,6 +1,6 @@
 apiVersion: v2
 # upstream version
-appVersion: 0.20.0
+appVersion: 0.21.0
 # giantswarm app version
 version: 0.2.0
 name: proxmox-csi-plugin
@@ -13,7 +13,7 @@ annotations:
   io.giantswarm.application.managed: "true"
   io.giantswarm.application.team: "rocket"
   io.giantswarm.application.upstream-chart-url: "https://github.com/sergelogvinov/proxmox-csi-plugin/tree/main/charts/proxmox-csi-plugin"
-  io.giantswarm.application.upstream-chart-version: "0.20.0"
+  io.giantswarm.application.upstream-chart-version: "0.21.0"
 keywords:
   - csi
   - storage
