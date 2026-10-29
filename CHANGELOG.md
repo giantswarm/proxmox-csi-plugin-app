@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update actions/create-github-app-token to v3.3.0 (giantswarm/proxmox-csi-plugin-app#74)
 - Update architect to v10.15.1 (giantswarm/proxmox-csi-plugin-app#77)
 - Update architect to v10.16.3 (giantswarm/proxmox-csi-plugin-app#78)
+- Update architect to v10.16.7 (giantswarm/proxmox-csi-plugin-app#83)
 
 ### Fixed
 
