@@ -2,10 +2,10 @@ apiVersion: vendir.k14s.io/v1alpha1
 directories:
 - contents:
   - git:
-      commitTitle: 'chore: release v0.21.0...'
-      sha: e26da3327ec363c55e6c5e17a4289b9b9c48bbfa
+      commitTitle: 'chore: release v0.22.0...'
+      sha: 4ccf1db795e2297b71857d15bf4e0980bd9400dd
       tags:
-      - v0.21.0
+      - v0.22.0
     path: proxmox-csi-plugin
   path: vendor
 - contents:
