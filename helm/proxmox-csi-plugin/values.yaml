@@ -34,6 +34,18 @@ provisionerName: csi.proxmox.sinextra.dev
 # Currently, cannot be customized.
 clusterID: kubernetes
 
+selinux:
+  # -- Mount a minimal /etc/selinux/config into the node plugin.
+  # mount(8) (libmount/libselinux) treats SELinux as disabled when that file is missing,
+  # and then silently drops SELinux mount options such as context=. Needed for
+  # StorageClass mountOptions like `context=system_u:object_r:ephemeral_t:s0` (Talos)
+  # and for seLinuxMount below. Does not change the node's SELinux mode.
+  enabled: false
+  # -- Set seLinuxMount in the CSIDriver: kubelet then mounts volumes with the pod's
+  # SELinux label (-o context=) instead of relabeling them. Requires selinux.enabled.
+  # ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#efficient-selinux-volume-relabeling
+  seLinuxMount: false
+
 # -- Log verbosity level. See https://github.com/kubernetes/community/blob/master/contributors/devel/sig-instrumentation/logging.md
 # for description of individual verbosity levels.
 logVerbosityLevel: 5
@@ -118,7 +130,7 @@ controller:
       repository: gsoci.azurecr.io/giantswarm/proxmox-csi-controller
       pullPolicy: IfNotPresent
       # Overrides the image tag whose default is the chart appVersion.
-      tag: "v0.21.0"
+      tag: "v0.22.0"
     # -- Controller resource requests and limits.
     # ref: https://kubernetes.io/docs/user-guide/compute-resources/
     resources:
@@ -134,7 +146,7 @@ controller:
     image:
       repository: gsoci.azurecr.io/giantswarm/csi-attacher
       pullPolicy: IfNotPresent
-      tag: v4.12.0
+      tag: v4.13.0
     # -- Attacher arguments.
     # example: --default-fstype=ext4
     args:
@@ -154,7 +166,7 @@ controller:
     image:
       repository: gsoci.azurecr.io/giantswarm/csi-provisioner
       pullPolicy: IfNotPresent
-      tag: v6.3.0
+      tag: v6.4.0
     # -- Provisioner arguments.
     # example: --feature-gates=VolumeAttributesClass=true
     args:
@@ -174,7 +186,7 @@ controller:
     image:
       repository: gsoci.azurecr.io/giantswarm/csi-resizer
       pullPolicy: IfNotPresent
-      tag: v2.2.1
+      tag: v2.3.0
     # -- Resizer arguments.
     # example: --feature-gates=VolumeAttributesClass=true
     args: []
@@ -194,7 +206,7 @@ controller:
     image:
       repository: gsoci.azurecr.io/giantswarm/csi-snapshotter
       pullPolicy: IfNotPresent
-      tag: v8.6.0
+      tag: v8.7.0
     # -- Snapshotter arguments.
     # example: --feature-gates=CSIVolumeGroupSnapshot=true
     args: []
@@ -215,7 +227,7 @@ node:
       repository: gsoci.azurecr.io/giantswarm/proxmox-csi-node
       pullPolicy: IfNotPresent
       # Overrides the image tag whose default is the chart appVersion.
-      tag: "v0.21.0"
+      tag: "v0.22.0"
     # -- Node CSI Driver resource requests and limits.
     # ref: https://kubernetes.io/docs/user-guide/compute-resources/
     resources:
@@ -231,7 +243,7 @@ node:
     image:
       repository: gsoci.azurecr.io/giantswarm/csi-node-driver-registrar
       pullPolicy: IfNotPresent
-      tag: v2.17.0
+      tag: v2.18.0
     # -- Driver registrar arguments.
     # example: --timeout=60s
     args: []
@@ -299,7 +311,7 @@ livenessprobe:
 initContainers: []
   # - name: loadbalancer
   #   restartPolicy: Always
-  #   image: ghcr.io/sergelogvinov/haproxy:2.8.3-alpine3.18
+  #   image: gsoci.azurecr.io/giantswarm/haproxy:2.8.3-alpine3.18
   #   imagePullPolicy: IfNotPresent
   #   env:
   #     - name: SVC

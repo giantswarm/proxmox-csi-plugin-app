@@ -16,19 +16,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update architect to v10.15.1 (giantswarm/proxmox-csi-plugin-app#77)
 - Update architect to v10.16.3 (giantswarm/proxmox-csi-plugin-app#78)
 - Update architect to v10.16.7 (giantswarm/proxmox-csi-plugin-app#83)
+- Update upstream proxmox-csi-plugin chart to v0.22.0.
 - Update architect to v10.17.4 (giantswarm/proxmox-csi-plugin-app#88)
 - Update mikefarah/yq to v4.54.3 (giantswarm/proxmox-csi-plugin-app#92)
 
 ### Fixed
 
 - The `helm.sh/chart` label is valid for long chart versions: the 63-character cut trims the whole trailing run of `-`, `.` and `_`.
+- Clean up the mess in `sync/sync.sh` caused by the chart label change.
 - Fix changelog generation script.
 
 ### Added
 
 - Run the sync script automatically on Renovate vendir branches and push the result for review.
 - Add a check which fails a pull request if the sync script was not run.
-
 - Disable Helm image reference verification in CI config.
 - Add Github action to create an issue in `giantswarm/giantswarm` for Team Rocket on vendir updates.
 - Revert 'Disable Helm image reference verification in CI config'.
@@ -38,11 +39,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Remove unnecessary files from the chart dir.
 - Update architect to v10.14.8 (giantswarm/proxmox-csi-plugin-app#58)
 - Update carvel-dev/vendir to v0.46.3 (giantswarm/proxmox-csi-plugin-app#68)
-
-### Fixed
-
-- The `helm.sh/chart` label is valid for long chart versions: the 63-character cut trims the whole trailing run of `-`, `.` and `_`.
-- Clean up the mess in `sync/sync.sh` caused by the chart label change.
 
 ## [0.2.0] - 2026-08-10
 
