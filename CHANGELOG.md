@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-11-09
+
 ### Changed
 
 - Create the vendir update issue as the `giantswarm-project-automation` GitHub App instead of architectbot's `ISSUE_AUTOMATION` token, and take the board item when the board's auto-add adds it first (giantswarm/giantswarm#38800).
@@ -57,6 +59,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update Proxmox app icon to `https://s.giantswarm.io/app-icons/proxmox/2/light.svg` (replacing the upstream third-party icon).
 - Update Renovate config to disable image tag updates in values.yaml
 
-[Unreleased]: https://github.com/giantswarm/proxmox-csi-plugin-app/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/giantswarm/proxmox-csi-plugin-app/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/giantswarm/proxmox-csi-plugin-app/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/giantswarm/proxmox-csi-plugin-app/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/giantswarm/proxmox-csi-plugin-app/releases/tag/v0.1.0
