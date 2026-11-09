@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update architect to v10.16.3 (giantswarm/proxmox-csi-plugin-app#78)
 - Update architect to v10.16.7 (giantswarm/proxmox-csi-plugin-app#83)
 - Update architect to v10.17.4 (giantswarm/proxmox-csi-plugin-app#88)
+- Update mikefarah/yq to v4.54.3 (giantswarm/proxmox-csi-plugin-app#92)
 
 ### Fixed
 
