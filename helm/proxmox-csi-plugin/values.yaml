@@ -130,7 +130,7 @@ controller:
       repository: gsoci.azurecr.io/giantswarm/proxmox-csi-controller
       pullPolicy: IfNotPresent
       # Overrides the image tag whose default is the chart appVersion.
-      tag: "v0.22.0"
+      tag: "v0.22.1"
     # -- Controller resource requests and limits.
     # ref: https://kubernetes.io/docs/user-guide/compute-resources/
     resources:
@@ -227,7 +227,7 @@ node:
       repository: gsoci.azurecr.io/giantswarm/proxmox-csi-node
       pullPolicy: IfNotPresent
       # Overrides the image tag whose default is the chart appVersion.
-      tag: "v0.22.0"
+      tag: "v0.22.1"
     # -- Node CSI Driver resource requests and limits.
     # ref: https://kubernetes.io/docs/user-guide/compute-resources/
     resources:
